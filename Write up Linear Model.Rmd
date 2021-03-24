@@ -50,6 +50,10 @@ cor(SIMS~ARM,data=data)
 model.1 <- lm(SIMS~ARM,data=data)
 summary.lm(model.1)
 ```
+```{r}
+newdata=data.frame(GRIP=94,ARM=88)
+predict(model.1 ,newdata,interval ="prediction")
+```
 
 
 # now add the model fit to our plot
@@ -82,6 +86,7 @@ cor(SIMS~GRIP,data=data)
 ```{r}
 model.2 <- lm(SIMS~GRIP,data=data)
 summary.lm(model.2)
+predict(model.2 ,newdata,interval ="prediction")
 ```
 
 
@@ -96,5 +101,11 @@ Sim -4.8 + .0.0454 * GRIP
 ```{r}
 model.3 <- lm(SIMS~ ARM+GRIP,data=data)
 summary.lm(model.3)
+predict(model.3 ,newdata,interval ="prediction")
 ```
 SIMS= -5.434 + 0.373* ARM + 0.0244*GRIP
+
+```{r}
+anova(model.1,model.3)
+```
+We reject the null hypothesis, due to the p-value being so small. We come to the conclusion that model 3 is the biggest adjusted r squared, which makes it the best. 

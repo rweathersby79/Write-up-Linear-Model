@@ -229,6 +229,10 @@ summary.lm(model.1)</code></pre>
 ## Residual standard error: 1.226 on 145 degrees of freedom
 ## Multiple R-squared:  0.4706, Adjusted R-squared:  0.467 
 ## F-statistic: 128.9 on 1 and 145 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>newdata=data.frame(GRIP=94,ARM=88)
+predict(model.1 ,newdata,interval =&quot;prediction&quot;)</code></pre>
+<pre><code>##         fit       lwr      upr
+## 1 0.7063836 -1.726209 3.138977</code></pre>
 </div>
 <div id="now-add-the-model-fit-to-our-plot" class="section level1">
 <h1>now add the model fit to our plot</h1>
@@ -268,6 +272,9 @@ summary.lm(model.2)</code></pre>
 ## Residual standard error: 1.295 on 145 degrees of freedom
 ## Multiple R-squared:  0.4094, Adjusted R-squared:  0.4053 
 ## F-statistic: 100.5 on 1 and 145 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>predict(model.2 ,newdata,interval =&quot;prediction&quot;)</code></pre>
+<pre><code>##          fit       lwr      upr
+## 1 -0.5361543 -3.107961 2.035652</code></pre>
 </div>
 <div id="now-add-the-model-fit-to-our-plot-1" class="section level1">
 <h1>now add the model fit to our plot</h1>
@@ -295,7 +302,21 @@ summary.lm(model.3)</code></pre>
 ## Residual standard error: 1.144 on 144 degrees of freedom
 ## Multiple R-squared:  0.5422, Adjusted R-squared:  0.5358 
 ## F-statistic: 85.26 on 2 and 144 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>predict(model.3 ,newdata,interval =&quot;prediction&quot;)</code></pre>
+<pre><code>##         fit       lwr      upr
+## 1 0.1496476 -2.132373 2.431668</code></pre>
 <p>SIMS= -5.434 + 0.373* ARM + 0.0244*GRIP</p>
+<pre class="r"><code>anova(model.1,model.3)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: SIMS ~ ARM
+## Model 2: SIMS ~ ARM + GRIP
+##   Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    145 217.88                                  
+## 2    144 188.43  1     29.45 22.506 4.994e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We reject the null hypothesis, due to the p-value being so small. We come to the conclusion that model 3 is the biggest adjusted r squared, which makes it the best.</p>
 </div>
 
 
