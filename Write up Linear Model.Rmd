@@ -92,3 +92,9 @@ basicGG + geom_point(aes(y=SIMS,x=GRIP)) + geom_smooth(method=lm)
 ``` 
 The equation for Sims explained by GRIP is 
 Sim -4.8 + .0.0454 * GRIP
+
+```{r}
+model.3 <- lm(SIMS~ ARM+GRIP,data=data)
+summary.lm(model.3)
+```
+SIMS= -5.434 + 0.373* ARM + 0.0244*GRIP
