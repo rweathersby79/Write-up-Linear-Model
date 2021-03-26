@@ -37,7 +37,7 @@ basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
 basicNN + geom_point()
 ```
   
-
+The plot value of SIMS and ARM.
 # Numerical results
 
 ```{r}
@@ -50,11 +50,17 @@ cor(SIMS~ARM,data=data)
 model.1 <- lm(SIMS~ARM,data=data)
 summary.lm(model.1)
 ```
+
+
+The equation for Sims explained by Arm is 
+Sim -4.1 + .054563 * ARM
+
+
 ```{r}
 newdata=data.frame(GRIP=94,ARM=88)
 predict(model.1 ,newdata,interval ="prediction")
 ```
-
+The newdata interval shows the prediction of Grip 94,and Arm 88.
 
 # now add the model fit to our plot
   
@@ -62,8 +68,10 @@ predict(model.1 ,newdata,interval ="prediction")
 basicNN + geom_point(aes(y=SIMS,x=ARM)) + geom_smooth(method=lm)
 ``` 
 
-The equation for Sims explained by Arm is 
-Sim -4.1 + .054563 * ARM
+
+
+The line represents a 95% confidence value. 
+
 
 ```{r}
 basicGG<- ggplot(data,aes(y=SIMS,x=GRIP))
@@ -73,13 +81,14 @@ basicGG<- ggplot(data,aes(y=SIMS,x=GRIP))
 ```{r}
 basicGG + geom_point()
 ```
-  
+This boxplot shows the value of SIMS= Grip.   
 
 # Numerical results
 
 ```{r}
 cor(SIMS~GRIP,data=data)
 ```
+The grip numerical value 0.6398458.
 
 # Inferential  (Build linear model)
   
@@ -88,13 +97,14 @@ model.2 <- lm(SIMS~GRIP,data=data)
 summary.lm(model.2)
 predict(model.2 ,newdata,interval ="prediction")
 ```
-
-
+Sim -4.8 + .0.0454 * GRIP
+ 
 # now add the model fit to our plot
   
 ```{r}
 basicGG + geom_point(aes(y=SIMS,x=GRIP)) + geom_smooth(method=lm)
 ``` 
+
 The equation for Sims explained by GRIP is 
 Sim -4.8 + .0.0454 * GRIP
 
